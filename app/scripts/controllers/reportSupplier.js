@@ -51,8 +51,8 @@ angular.module('artmanager')
 
                 var obj = $scope.reportSupplier;
                 if (obj.dt_from == null) {
-                    obj.dt_from = new Date().getDate() + "-" + (new Date().getMonth()) + "-" + new Date().getFullYear() +" 00:00";
-                    obj.dt_to = new Date().getDate() + "-" +  (new Date().getMonth() +1 ) + "-" + new Date().getFullYear() +" 23:59";
+                    obj.dt_from = new Date().getFullYear()  + "-" +  ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + new Date().getDate() +" 00:00";
+                    obj.dt_to = new Date().getFullYear()  + "-" +  ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + new Date().getDate() +" 23:59";
                 }
 
                 $http({

@@ -9,8 +9,8 @@ angular.module('artmanager')
         
     $scope.$state = $state;
     $scope.chart = null;
-    $scope.dtNow = {"dt_from": new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear() +" 00:00",
-             "dt_to": new Date().getDate() + "-" +  (new Date().getMonth() +1 ) + "-" + new Date().getFullYear() +" 23:59"}; 
+    $scope.dtNow = {"dt_from": new Date().getFullYear()  + "-" +  ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + new Date().getDate() +" 00:00",
+             "dt_to": new Date().getFullYear()  + "-" +  ("0" + (new Date().getMonth() + 1)).slice(-2) + "-" + new Date().getDate() +" 23:59"}; 
      
     $scope.reportDate = {
         "dt_from": "",

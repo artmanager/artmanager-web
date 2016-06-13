@@ -3,9 +3,9 @@
 	<span class="glyphicon glyphicon-dashboard bg-fade"></span>
 	<div class="jumbotron">
 		<div>
-			De: <md-datepicker ng-model="reportSupplier.dt_from" md-placeholder="Enter date" style="margin-right:5px;"></md-datepicker> 
-			Ate: <md-datepicker ng-model="reportSupplier.dt_to" md-placeholder="Enter date"></md-datepicker>
-			<button type="button" class="btn btn-primary" style="float:right" ng-click="ReportSuppliers()" value="Atualizar">Atualizar</button> 
+			De: <md-datepicker ng-model="reportDate.dt_from" md-placeholder="Enter date" style="margin-right:5px;"></md-datepicker> 
+			Ate: <md-datepicker ng-model="reportDate.dt_to" md-placeholder="Enter date"></md-datepicker>
+			<button type="button" class="btn btn-primary" style="float:right" ng-click="ReportSales()" value="Atualizar">Atualizar</button> 
 		</div>
         <canvas id="bar" class="chart chart-bar"
             chart-data="data" chart-labels="labels"> chart-series="series"
