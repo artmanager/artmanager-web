@@ -12,7 +12,7 @@ angular.module('artmanager')
     $scope.series = ['Series A', 'Series B'];
 
     $scope.data = [
-        [65.6, 59, 80]
+        [0, 0, 0]
     ];
 
 
@@ -31,8 +31,15 @@ angular.module('artmanager')
                 headers: { 'x-access-token': $window.sessionStorage.token }
             }).then(function successCallback(response) {
                 var data = response.data;
-                if (data.success) {
+                var list = [];
+                if (data.success && data.success[0].total != null) {
+                     $scope.data = [];
+                    
+                     list.push(data.success[0].total);
+                     list.push(data.success[0].total_discount);
+                     list.push(data.success[0].total_liquid);
 
+                     $scope.data.push(list);
                 }
             }, function errorCallback(response) {
                 delete $window.sessionStorage.token;
@@ -42,4 +49,6 @@ angular.module('artmanager')
             console.log(e);
         }
     }
+
+    $scope.ReportSales();
 });
