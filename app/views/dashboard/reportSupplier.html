@@ -1,0 +1,15 @@
+<div ng-controller="ReportSupplierCtrl" ng-cloak>
+    <!--<a ui-sref="overview" class="pull-right btn btn-primary btn-outline btn-rounded">Back to Overview</a>-->
+	<h2>Relatório de fornecedor</h2>
+	<span class="glyphicon glyphicon-dashboard bg-fade"></span>
+	<div class="jumbotron">
+		<div>
+			De: <md-datepicker ng-model="reportSupplier.dt_from" md-placeholder="Enter date" style="margin-right:5px;"></md-datepicker> 
+			Ate: <md-datepicker ng-model="reportSupplier.dt_to" md-placeholder="Enter date"></md-datepicker>
+			<button type="button" class="btn btn-primary" style="float:right" ng-click="ReportSuppliers()">Atualizar</button> 
+		</div>
+		<canvas id="base" class="chart-base" chart-type="type" chart-data="data" 
+			chart-labels="labels" chart-legend="true" chart-click="onClick">
+		</canvas> 
+	</div>
+</div>

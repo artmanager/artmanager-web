@@ -1,13 +1,17 @@
 ﻿angular.module('artmanager')
   .controller('DashboardCtrl', function ($scope, $http, $location, $state, $window) {
 
-      $scope.user = {
-          login: '',
-          password: '',
-          confirm: ''
-      }
+        if ($window.sessionStorage.token == null || $window.sessionStorage.token == undefined) {
+            $location.path('/login');
+        }
+        
+        $scope.user = {
+            login: '',
+            password: '',
+            confirm: ''
+        }
 
-      $scope.registerUser = function () {
+        $scope.registerUser = function () {
 
         if ($scope.user.password != $scope.confirm) {
             alert('Senhas invalidas');

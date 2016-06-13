@@ -1,14 +1,31 @@
-<div>
-	<a ui-sref="overview" class="pull-right btn btn-primary btn-outline btn-rounded">Back to Overview</a>
-	<h2>Cadastros</h2>
+<div ng-controller="ReportCtrl" ng-cloak>
+	<!--<a ui-sref="overview" class="pull-right btn btn-primary btn-outline btn-rounded">Voltar para os cadastros</a>-->
+	<h2>Relatório de produtos</h2>
 	<span class="glyphicon glyphicon-dashboard bg-fade"></span>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Add Charts here</h1>
-			<p>You can use C3.js or Chart.js</p>
-			<p>
-				<a class="btn btn-primary btn-lg btn-outline btn-rounded">Learn more</a>
-			</p>
-		</div>
-	</div>
+            <div class="container">
+                <h2>Produtos vendidos Hoje</h2>
+                <div id="timeSeriesToDay">
+                    <canvas id="line" class="chart chart-line" chart-data="data"
+                        chart-labels="labels" chart-legend="true" chart-series="series" /> 
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" style="float:left" ng-click="reportProductsToday()">Atualizar</button>
+    </div>
+    
+     <div class="jumbotron">
+        <div class="container">
+            <h2> Produtos vendidos </h2>
+            <div>
+                De: <md-datepicker ng-model="reportDate.dt_from" md-placeholder="Enter date" style="margin-right:5px;"></md-datepicker> Ate: <md-datepicker ng-model="reportDate.dt_to" md-placeholder="Enter date"></md-datepicker> 
+            </div>
+            <div>   
+                <canvas id="line" class="chart chart-line" chart-data="dataAll"
+                        chart-labels="labelsAll" chart-legend="true" chart-series="seriesAll" /> 
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" style="float:left" ng-click="reportProductsAll()">Atualizar</button>
+    </div>
 </div>

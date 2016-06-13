@@ -11,7 +11,9 @@
 angular
   .module('artmanager', [
     'ui.router',
-    'ngAnimate'
+    'ngAnimate',
+    'chart.js',
+    'ngMaterial'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -19,32 +21,45 @@ angular
     $urlRouterProvider.otherwise('/login');
 
     $stateProvider
-      .state('base', {
-        abstract: true,
-        url: '',
-        templateUrl: 'views/base.html'
-      })
+        .state('base', {
+            abstract: true,
+            url: '',
+            templateUrl: 'views/base.html'
+        })
         .state('login', {
-          url: '/login',
-          parent: 'base',
-          templateUrl: 'views/login.html',
-          controller: 'LoginCtrl'
+            url: '/login',
+            parent: 'base',
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl'
         })
         .state('dashboard', {
-          url: '/dashboard',
-          parent: 'base',
-          templateUrl: 'views/dashboard.html',
-          controller: 'DashboardCtrl'
+            url: '/dashboard',
+            parent: 'base',
+            templateUrl: 'views/dashboard.html',
+            controller: 'DashboardCtrl'
         })
-          .state('overview', {
+        .state('overview', {
             url: '/overview',
             parent: 'dashboard',
-            templateUrl: 'views/dashboard/overview.html'
-          })
-          .state('reports', {
+            templateUrl: 'views/dashboard/registers.html'
+        })
+        .state('reports', {
             url: '/reports',
             parent: 'dashboard',
-            templateUrl: 'views/dashboard/reports.html'
-          });
-
+            templateUrl: 'views/dashboard/reports.html',
+            controller: 'ReportCtrl'
+        })
+        .state('reportSupplier', {
+            url: '/reportSupplier',
+            parent: 'dashboard',
+            templateUrl: 'views/dashboard/reportSupplier.html',
+            controller: 'ReportSupplierCtrl'
+        })
+        .state('reportSales', {
+            url: '/reportSales',
+            parent: 'dashboard',
+            templateUrl: 'views/dashboard/reportSales.html',
+            controller: 'ReportSalesCtrl'
+        });
+         
   });

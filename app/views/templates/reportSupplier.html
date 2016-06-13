@@ -1,0 +1,47 @@
+<md-dialog aria-label="Fornecedor"  ng-cloak  style="max-width: 60%; min-width: 60%">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Fornecedor:  {{ Supplier.supplier }}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p> Fornecedor: {{ Supplier.supplier }} </p>
+        <span flex> </span>
+        <p> Comissão: R$ {{ Supplier.total }} </p>
+        <md-list>
+            <md-subheader class="md-no-sticky">Produtos vendidos </md-subheader>
+            <div class="md-list-item-text" layout="column">
+                <table style="width:100%" class="md-3-line">
+                    <tr>
+                        <td>Descrição</td>
+                        <td>Altura</td> 
+                        <td>Largura</td>
+                        <td>Quantidade</td>
+                    </tr>
+                </table>
+            </div>
+            <md-list-item class="md-3-line" ng-repeat="prod in Supplier.products">
+            <div class="md-list-item-text" layout="column">
+                <table style="width:100%">
+                    <tr>
+                        <td>{{ prod.name }}</td>
+                        <td>{{ prod.height }}</td> 
+                        <td> {{ prod.weight }}</td>
+                        <td> {{ prod.quantity }}</td>
+                    </tr>
+                </table>
+            </div>
+            </md-list-item>
+        </md-list>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="closeDialog()" style="margin-right:20px;"> Fechar </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

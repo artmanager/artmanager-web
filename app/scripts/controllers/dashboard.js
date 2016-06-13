@@ -16,6 +16,10 @@ angular.module('artmanager')
           name: $window.sessionStorage.name
       };
 
+      if ($window.sessionStorage.token == null || $window.sessionStorage.token == undefined) {
+          $location.path('/login');
+      }
+
       $scope.logout = function () {
 
           delete $window.sessionStorage.name;

@@ -20,9 +20,11 @@ angular.module('artmanager')
       }
 
       $scope.submit = function () {
-          //$location.path('/dashboard');
+
           var user = btoa($scope.login.user + '-' + $scope.login.password);
           var obj = { data: user };
+
+          var config = '../../config.json';
           $http({
               method: 'POST',
               url: 'http://api.artmanager.com.br/authentication',
