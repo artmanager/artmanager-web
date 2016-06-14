@@ -4,70 +4,114 @@
 	<div class="jumbotron" >
 		<md-content class="md-padding" layout-xs="column" layout="row">
 		<div flex-xs flex-gt-xs="50" layout="column">
-		<md-card>
-			<md-card-title>
-				<md-card-title-text>
-					<span class="md-headline">Cadastro usuário</span>
-					<md-input-container>
-						<label>Nome</label>
-						<input type="text" ng-model="user.name" required>
-					</md-input-container>
-					<md-input-container>
-						<label>E-mail</label>
-						<input type="email" ng-model="user.user" required>
-					</md-input-container>
-					<md-input-container>
-						<label>Senha</label>
-						<input type="password" ng-model="user.password" required>
-					</md-input-container>
-					<md-input-container>
-						<label>Confirme</label>
-						<input type="password" ng-model="user.confirm" required>
-					</md-input-container>
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">Cadastro usuário</span>
+						<md-input-container>
+							<label>Nome</label>
+							<input type="text" ng-model="user.name" required>
+						</md-input-container>
+						<md-input-container>
+							<label>E-mail</label>
+							<input type="email" ng-model="user.user" required>
+						</md-input-container>
+						<md-input-container>
+							<label>Senha</label>
+							<input type="password" ng-model="user.password" required>
+						</md-input-container>
+						<md-input-container>
+							<label>Confirme</label>
+							<input type="password" ng-model="user.confirm" required>
+						</md-input-container>
+						
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-actions layout="row" layout-align="end center">
+					<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterUser()">Cadastrar</button>
+				</md-card-actions>
+			</md-card>
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">Cadastro de produto</span>
+						<md-input-container >
+							<label>Nome</label>
+							<input type="text" ng-model="product.name" required>
+						</md-input-container>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content  layout-align="space-between">
 					
-				</md-card-title-text>
-			</md-card-title>
-			<md-card-actions layout="row" layout-align="end center">
-				<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterUser()">Cadastrar</button>
-			</md-card-actions>
-		</md-card>
-		<md-card>
-			<md-card-title>
-			<md-card-title-text>
-				<span class="md-headline">Cadastro de produto</span>
-				<span class="md-subhead">Extra Large</span>
-			</md-card-title-text>
-			</md-card-title>
-			<md-card-content layout="row" layout-align="space-between">
-			<div class="md-media-xl card-media"></div>
-			<md-card-actions layout="column">
-				<md-button class="md-icon-button" aria-label="Favorite">
-				<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Settings">
-				<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Share">
-				<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-				</md-button>
-			</md-card-actions>
-			</md-card-content>
-		</md-card>
+					<md-autocomplete
+						ng-disabled="isDisabled"
+						md-no-cache="noCache"
+						md-selected-item="selectedItem"
+						md-search-text-change="searchTextChange(searchText)"
+						md-search-text="searchText"
+						md-selected-item-change="selectedItemChange(item)"
+						md-items="item in productCategory"
+						md-item-text="item.describe"
+						md-min-length="0"
+						placeholder="Categoria">
+						<md-item-template>
+							<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.describe}}</span>
+						</md-item-template>
+						<md-not-found>
+						<a ng-click="newCategory(searchText)">Cadastrar categoria!</a>
+						</md-not-found>
+					</md-autocomplete>
+					<br />
+					<md-autocomplete
+						ng-disabled="isDisabled"
+						md-no-cache="noCache"
+						md-selected-item="selectedItemSup"
+						md-search-text-change="searchTextChangeSup(searchTextSup)"
+						md-search-text="searchTextSup"
+						md-selected-item-change="selectedItemChangeSup(item)"
+						md-items="item in supplier"
+						md-item-text="item.describe"
+						md-min-length="0"
+						placeholder="Fornecedor">
+						<md-item-template>
+							<span md-highlight-text="searchTextSup" md-highlight-flags="^i">{{item.describe}}</span>
+						</md-item-template>
+						<md-not-found>
+						<a ng-click="newSupplier(searchTextSup)">Cadastrar fornecedor!</a>
+						</md-not-found>
+					</md-autocomplete>
+				</md-card-content>
+				<md-card-content>
+					<md-input-container item-width="50%">
+							<label>largura</label>
+							<input type="text" ng-model="product.weight" required>
+					</md-input-container>
+					<md-input-container> 
+						<label>Altura</label>
+						<input type="text" ng-model="product.size" required>
+					</md-input-container>
+				</md-card-content>
+				<md-card-content>
+					<md-input-container class="md-block">
+						<label>Descrição</label>
+						<textarea md-maxlength="150" rows="5" md-select-on-focus 
+							ng-model="product.describe" ng-value="product.describe">
+						</textarea>
+					</md-input-container>
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterProduct()">Cadastrar</button>
+				</md-card-actions>
+			</md-card>
 		</div>
 		<div flex-xs flex-gt-xs="50" layout="column">
 		<md-card>
 			<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Cadastro de categoria</span>
-				
+				<span class="md-headline">Cadastro de produto</span>				
 			</md-card-title-text>
-			<md-card-title-media>
-				<div class="md-media-sm card-media"></div>
-			</md-card-title-media>
-			</md-card-title>
 			<md-card-actions layout="row" layout-align="end center">
-				<md-button>Action 1</md-button>
-				<md-button>Action 2</md-button>
+				<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterProduct()">Cadastrar</button>
 			</md-card-actions>
 		</md-card>
 		<md-card>
