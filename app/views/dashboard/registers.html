@@ -34,7 +34,7 @@
 			<md-card>
 				<md-card-title>
 					<md-card-title-text>
-						<span class="md-headline">Cadastro de produto</span>
+						<span class="md-headline">Cadastro de Produto</span>
 						<md-input-container >
 							<label>Nome</label>
 							<input type="text" ng-model="product.name" required>
@@ -83,7 +83,7 @@
 				</md-card-content>
 				<md-card-content>
 					<md-input-container item-width="50%">
-							<label>largura</label>
+							<label>Largura</label>
 							<input type="text" ng-model="product.weight" required>
 					</md-input-container>
 					<md-input-container> 
@@ -107,11 +107,34 @@
 		<div flex-xs flex-gt-xs="50" layout="column">
 		<md-card>
 			<md-card-title>
-			<md-card-title-text>
-				<span class="md-headline">Cadastro de produto</span>				
-			</md-card-title-text>
+				<md-card-title-text>
+					<span class="md-headline">Cadastro de Cliente</span>
+					<md-input-container >
+						<label>Nome</label>
+						<input type="text" ng-model="client.name" required>
+					</md-input-container>				
+					<md-input-container >
+						<label>Email</label>
+						<input type="email" ng-model="client.email" required>
+					</md-input-container>				
+					<md-input-container >
+						<label>CPF</label>
+						<input type="text" ng-model="client.cpf_cnpf" ng-cpf ui-mask="999.999.999-99" required/>
+					</md-input-container>				
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-input-container>
+					<label>DDD</label>
+					<input type="number" ng-model="client.phone[0].ddd" />
+				</md-input-container>
+				<md-input-container>
+					<label>Telefone</label>
+					<input type="number" ng-model="client.phone[0].number" />
+				</md-input-container>
+			</md-card-content>
 			<md-card-actions layout="row" layout-align="end center">
-				<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterProduct()">Cadastrar</button>
+				<button type="button" class="btn btn-primary" style="float:right" ng-click="RegisterClient()">Cadastrar</button>
 			</md-card-actions>
 		</md-card>
 		<md-card>
@@ -126,7 +149,6 @@
 			</md-card-title>
 			<md-card-actions layout="row" layout-align="end center">
 			<md-button>Action 1</md-button>
-			<md-button>Action 2</md-button>
 			</md-card-actions>
 		</md-card>
 		</div>

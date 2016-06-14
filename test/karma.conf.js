@@ -24,6 +24,8 @@ module.exports = function(config) {
       '../bower_components/angular-aria/angular-aria.js',
       '../bower_components/angular-messages/angular-messages.js',
       '../bower_components/angular-material/angular-material.js',
+      '../bower_components/cpf_cnpj/build/cpf_cnpj.js',
+      '../bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js',
       // endbower
       '../app/scripts/**/*.js',
       //'../test/mock/**/*.js',

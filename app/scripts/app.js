@@ -13,7 +13,8 @@ angular
     'ui.router',
     'ngAnimate',
     'chart.js',
-    'ngMaterial'
+    'ngMaterial',
+    'ngCpfCnpj'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 

@@ -10,6 +10,26 @@ angular.module('artmanager')
         confirm: ''
     };
 
+    $scope.client = {
+        name: '',
+        email: '',
+        cpf_cnpf: '',
+        // address: [{
+        //     street: '',
+        //     number: 0,
+        //     neighborhood: '',
+        //     zip_code: '',
+        //     city: '',
+        //     state: '',
+        //     country: 'Brasil'
+        // }],
+        phone: [{
+            ddd: null,
+            number: null,
+            type: 1
+        }]
+    }
+
     $scope.product = {
         id_product_category: 0,
         id_supplier : 0,
@@ -146,10 +166,10 @@ angular.module('artmanager')
                     );
                 }
 
-                $scope.name = '';
-                $scope.user = '';
-                $scope.password = '';
-                $scope.confirm = '';
+                $scope.user.name = '';
+                $scope.user.user = '';
+                $scope.user.password = '';
+                $scope.user.confirm = '';
 
             }, function errorCallback(response) {
                 delete $window.sessionStorage.token;
@@ -265,6 +285,65 @@ angular.module('artmanager')
             console.log(e);
         }
     };
+
+    $scope.RegisterClient = function () {
+        try {
+            var obj = {
+                client: $scope.client
+            };
+
+            if (obj.name == '' || obj.email == '' || obj.cpf_cnpf == '') {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Erro')
+                        .textContent('Por favor preencha todos os campos.')
+                        .ariaLabel('Dialog')
+                        .ok('OK')
+                );
+                return;
+            }
+
+            $http({
+                method: 'POST',
+                url: 'http://api.artmanager.com.br/client',
+                data: obj,
+                headers: { 'x-access-token': $window.sessionStorage.token }
+            }).then(function successCallback(response) {
+                var data = response.data;
+                if (data.success) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Sucesso')
+                        .textContent(data.success)
+                        .ariaLabel('Dialog')
+                        .ok('OK')
+                    );
+                } else {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title('Erro')
+                        .textContent(data.error)
+                        .ariaLabel('Dialog')
+                        .ok('OK')
+                    );
+                }
+
+                $scope.client.name = '';
+                $scope.client.email = '';
+                $scope.client.cpf_cnpf = '';
+                $scope.client.phone[0].ddd = null;
+                $scope.client.phone[0].number = null;
+
+            }, function errorCallback(response) {
+                delete $window.sessionStorage.token;
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     $scope.consultSupplier();
     $scope.consultCategory();
