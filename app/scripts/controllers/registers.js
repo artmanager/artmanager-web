@@ -10,6 +10,10 @@ angular.module('artmanager')
         confirm: ''
     };
 
+    $scope.product_category = {
+        describe: ""
+    };
+
     $scope.client = {
         name: '',
         email: '',
@@ -176,6 +180,50 @@ angular.module('artmanager')
             });
         } catch (e) {
             console.log(e);
+        }
+    };
+
+    $scope.RegisterProductCategory = function () {
+        try {
+            var obj = $scope.product_category;
+             $http({
+                method: 'POST',
+                url: 'http://api.artmanager.com.br/productCategory',
+                data: obj,
+                headers: { 'x-access-token': $window.sessionStorage.token }
+            }).then(function successCallback(response) {
+                var obj = response.data;
+                if (obj.success != null) {
+                    alert = $mdDialog.alert({
+                        title: 'Sucesso',
+                        textContent: obj.success,
+                        ok: 'Close'
+                    });
+                    $mdDialog
+                        .show( alert )
+                        .finally(function() {
+                        alert = undefined;
+                    });
+                } else {
+                    alert = $mdDialog.alert({
+                        title: 'Error',
+                        textContent: obj.error,
+                        ok: 'Close'
+                    });
+                    $mdDialog
+                        .show( alert )
+                        .finally(function() {
+                        alert = undefined;
+                    });
+                    console.log(response.error);
+                }
+
+                $scope.product_category.describe = '';
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        } catch (e) {
+            
         }
     };
 
