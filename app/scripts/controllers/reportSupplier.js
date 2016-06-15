@@ -20,12 +20,12 @@ angular.module('artmanager')
         $scope.event = null;
 
         $scope.SupplierModel = {
-            total: 20,    
-            supplier: 'Gustavo',
+            total: 0,    
+            supplier: '',
             products: [{
-                name: 'Bolsa',
-                height: '10 cm',
-                weight: '20 cm',
+                name: '',
+                height: '',
+                weight: '',
                 quantity: 0
             }]
         }
@@ -81,7 +81,6 @@ angular.module('artmanager')
                         console.log(data.error);
                     }
                 }, function errorCallback(response) {
-                   delete $window.sessionStorege.token;
                 });
             } catch (error) {
                 console.log('Não foi possível consultar o relatorio. ' + error);
@@ -104,8 +103,7 @@ angular.module('artmanager')
                 }).then(function successCallback(response) {
                     var data = response.data;
                     if (data.success) {
-                        $scope.SupplierModel.supplier = data.success[0].supplier;
-                        console.log('TESTE');
+                        $scope.SupplierModel = data.success[0];
                         console.log($scope.SupplierModel);
                         var parentEl = angular.element(document.body);
 
@@ -122,7 +120,7 @@ angular.module('artmanager')
                         console.log(data.error);
                     }
                 }, function errorCallback(response) {
-                delete $window.sessionStorege.token;
+                
                 });
             } catch (error) {
                 console.log('Não foi possível consultar o relatorio. ' + error);

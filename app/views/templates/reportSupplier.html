@@ -13,27 +13,26 @@
         <p> Fornecedor: {{ Supplier.supplier }} </p>
         <span flex> </span>
         <p> Comissão: R$ {{ Supplier.total }} </p>
-        <md-list>
+        
             <md-subheader class="md-no-sticky">Produtos vendidos </md-subheader>
-            <div class="md-list-item-text" layout="column">
-                <table style="width:100%" class="md-3-line">
+            <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
                     <tr>
-                        <td>Produtos</td>
-                        <td>Quantidade</td>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Largura</th>
+                    <th>Altura</th>
                     </tr>
-                </table>
-            </div>
-            <md-list-item class="md-3-line" ng-repeat="prod in Supplier.products">
-            <div class="md-list-item-text" layout="column">
-                <table style="width:100%">
+                </thead>
+                <tbody  ng-repeat="prod in Supplier.products">
                     <tr>
-                        <td>{{ prod.name }}</td>
-                        <td> {{ prod.quantity }}</td>
+                        <td data-title="ID">{{ prod.name}}</td>
+                        <td data-title="Name">{{ prod.quantity}}</td>
+                        <td data-title="Largura">{{ prod.weight }}</td>
+                        <td data-title="Altura"> {{ prod.height }}</td>
                     </tr>
-                </table>
-            </div>
-            </md-list-item>
-        </md-list>
+                </tbody>
+            </table>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
